@@ -5,5 +5,5 @@ Change History
 ================
 
 - First public release.
-  [davismr]
+  [calvinbutcher]
 

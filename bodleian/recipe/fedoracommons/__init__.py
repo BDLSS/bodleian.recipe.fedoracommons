@@ -20,6 +20,8 @@ class Recipe(object):
     def install(self):
         """Installer"""
         options = self.options
+        # Move pom.xml to the /main dir within the build
+        shutil.move('pom.xml', os.path.join(buildout['buildout']['directory'], 'main', 'pom.xml'))
         # If a path to the zip file is not provided, then download it and build it
         if not 'zip' in options:
             output = self.download.install()
