@@ -25,7 +25,7 @@ setup(
     url='https://github.com/BDLSS/bodleian.recipe.fedoracommons.git',
     license='ZPL',
     packages=find_packages(exclude=['ez_setup']),
-    namespace_packages=['collective', 'collective.recipe'],
+    namespace_packages=['bodleian', 'bodleian.recipe'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
