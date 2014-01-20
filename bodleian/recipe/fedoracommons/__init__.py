@@ -20,16 +20,18 @@ class Recipe(object):
     def install(self):
         """Installer"""
         options = self.options
-        # Move pom.xml to the /main dir within the build
-        print os.path.join(os.getcwd(), 'conf', 'pom.xml'),'================'
-        # str(a).startswith
-#        shutil.move(os.path.join(os.getcwd(), 'conf', 'pom.xml'), os.path.abspath(os.path.join(options['target'], '..', 'main', 'pom.xml')))
 
         # If a path to the zip file is not provided, then download it and build it
         if not 'zip' in options:
             output = self.download.install()
             os.chdir(output[1])
-            print str(output[1]), "*********************"
+            # this is where maven expects the pom.xml file
+            dest_path = output[1]
+            # we get the pom.xml from the buildout conf/ dir
+            pom_path = os.path.join(os.getcwd(), 'conf')
+            # we move it into req destination
+            shutil.move(os.path.join(pom_path, 'pom.xml'), os.path.join(dest_path, 'pom.xml')))
+
             # Call Maven to build couchdb-lucene
             subprocess.call(['mvn', 'install'])
             try:
@@ -38,7 +40,7 @@ class Recipe(object):
                 raise zc.buildout.UserError('Maven failed')
         # Create directory for extracted files
         target_dir = options['target']
-        print str(target_dir), '====================='
+
         # Temporary directory
         tmp_dir = '/tmp/'
         # Unzip the produced archive
@@ -48,7 +50,7 @@ class Recipe(object):
             # Find the run member
             run_member = next(_ for _ in zip_file.namelist() if _.endswith('run'))
             run_path = os.path.join(tmp_dir, run_member)
-            print str(run_path), "======================"
+
             # Make the extracted run file executable
             os.chmod(run_path, 0777)
             # Move from the tmp directory to the target directory
