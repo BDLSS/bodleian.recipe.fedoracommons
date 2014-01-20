@@ -21,7 +21,7 @@ class Recipe(object):
         """Installer"""
         options = self.options
         # Move pom.xml to the /main dir within the build
-        print os.getcwd(),'================'
+        print os.path.abspath(os.path.join(options['target'], '..', 'main', 'pom.xml')),'================'
         #        str(a).startswith 
         shutil.move('pom.xml', os.path.abspath(os.path.join(options['target'], '..', 'main', 'pom.xml')))
 
