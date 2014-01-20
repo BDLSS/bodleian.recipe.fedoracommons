@@ -1,7 +1,0 @@
-<project>
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>BDLSS</groupId>
-  <artifactId>Fedora commons</artifactId>
-  <version>1</version>
-  <build><defaultGoal>install</defaultGoal></build>
-</project>
