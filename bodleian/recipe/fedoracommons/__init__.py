@@ -29,7 +29,7 @@ class Recipe(object):
             os.chdir(output[1])
             # this is where maven expects the pom.xml file
             dest_path = output[1]
-            import pdb;pdb.set_trace()
+            # import pdb;pdb.set_trace()
             # we move it into req destination
             print 'moving pom.xml to ', os.path.join(dest_path, 'pom.xml'), '*****'
             shutil.move(os.path.join(pom_path, 'pom.xml'), os.path.join(dest_path, 'pom.xml'))
@@ -38,7 +38,7 @@ class Recipe(object):
             subprocess.call(['mvn', 'install'])
             try:
                 import pdb;pdb.set_trace()
-                options['zip'] = glob.glob(os.path.join(options['target'], '*.zip'))[0]
+                options['zip'] = glob.glob(os.path.join(options['target'], 'target', '*.zip'))[0]
             except IndexError:
                 raise zc.buildout.UserError('Maven failed')
         # Create directory for extracted files
