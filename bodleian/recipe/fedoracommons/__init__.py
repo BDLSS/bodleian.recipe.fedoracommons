@@ -21,9 +21,9 @@ class Recipe(object):
         """Installer"""
         options = self.options
         # Move pom.xml to the /main dir within the build
-        print os.path.abspath(os.path.join(options['target'], '..', 'main', 'pom.xml')),'================'
-        #        str(a).startswith 
-        shutil.move('pom.xml', os.path.abspath(os.path.join(options['target'], '..', 'main', 'pom.xml')))
+        # print os.path.abspath(os.path.join(options['target'], '..', 'main', 'pom.xml')),'================'
+        # str(a).startswith
+        #shutil.move('pom.xml', os.path.abspath(os.path.join(options['target'], '..', 'main', 'pom.xml')))
 
         # If a path to the zip file is not provided, then download it and build it
         if not 'zip' in options:
@@ -47,6 +47,7 @@ class Recipe(object):
             run_member = next(_ for _ in zip_file.namelist() if _.endswith('run'))
             run_path = os.path.join(tmp_dir, run_member)
             # Make the extracted run file executable
+            print str(run_path), '=================='
             os.chmod(run_path, 0777)
             # Move from the tmp directory to the target directory
             shutil.move(os.path.join(tmp_dir, zip_file.namelist()[0][:-1]), target_dir)
