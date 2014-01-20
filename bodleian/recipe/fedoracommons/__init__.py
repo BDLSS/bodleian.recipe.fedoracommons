@@ -24,7 +24,7 @@ class Recipe(object):
         try:
             shutil.move('pom.xml', os.path.join(options['target'], '../main', 'pom.xml'))
         except IndexError:
-            raise zc.buildout.UserError('shutil move failed "'.os.path.join(options['target'], '../main', 'pom.xml').'"')
+            raise zc.buildout.UserError('shutil move failed '.os.path.join(options['target'], '../main', 'pom.xml'))
         # If a path to the zip file is not provided, then download it and build it
         if not 'zip' in options:
             output = self.download.install()
