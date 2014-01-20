@@ -16,6 +16,8 @@ class Recipe(object):
         self.options = options
         options.setdefault('target', os.path.join(buildout['buildout']['directory'], 'lib', name))
         self.download = downloadRecipe(buildout, name, options)
+        # we get the pom.xml from the buildout conf/ dir
+        pom_path = os.path.join(os.getcwd(), 'conf')
 
     def install(self):
         """Installer"""
@@ -27,8 +29,6 @@ class Recipe(object):
             os.chdir(output[1])
             # this is where maven expects the pom.xml file
             dest_path = output[1]
-            # we get the pom.xml from the buildout conf/ dir
-            pom_path = os.path.join(options['target'], 'conf')
             # we move it into req destination
             shutil.move(os.path.join(pom_path, 'pom.xml'), os.path.join(dest_path, 'pom.xml'))
 
