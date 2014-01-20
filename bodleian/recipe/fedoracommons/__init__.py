@@ -30,7 +30,7 @@ class Recipe(object):
             # we get the pom.xml from the buildout conf/ dir
             pom_path = os.path.join(os.getcwd(), 'conf')
             # we move it into req destination
-            shutil.move(os.path.join(pom_path, 'pom.xml'), os.path.join(dest_path, 'pom.xml')))
+            shutil.move(os.path.join(pom_path, 'pom.xml'), os.path.join(dest_path, 'pom.xml'))
 
             # Call Maven to build couchdb-lucene
             subprocess.call(['mvn', 'install'])
