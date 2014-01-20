@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import zipfile
 import zc.buildout
+import sys.stdout
 
 from hexagonit.recipe.download import Recipe as downloadRecipe
 
@@ -21,6 +22,8 @@ class Recipe(object):
         """Installer"""
         options = self.options
         # Move pom.xml to the /main dir within the build
+        sys.stdout.write(join(os.path.join(os.getcwd, 'pom.xml'), os.path.join(options['target'], '..', 'main', 'pom.xml')))
+        sys.stdout.flush()
         shutil.move(os.path.join(os.getcwd, 'pom.xml'), os.path.join(options['target'], '..', 'main', 'pom.xml'))
 
         # If a path to the zip file is not provided, then download it and build it
