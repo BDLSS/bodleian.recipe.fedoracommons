@@ -29,6 +29,7 @@ class Recipe(object):
         if not 'zip' in options:
             output = self.download.install()
             os.chdir(output[1])
+            print str(output[1]), "*********************"
             # Call Maven to build couchdb-lucene
             subprocess.call(['mvn', 'install'])
             try:
