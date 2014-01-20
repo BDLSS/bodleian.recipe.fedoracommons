@@ -21,7 +21,7 @@ class Recipe(object):
         """Installer"""
         options = self.options
         # Move pom.xml to the /main dir within the build
-        shutil.move(os.path.join(os.getcwd, 'pom.xml'), os.path.join(options['target'], ,'..', 'main', 'pom.xml'))
+        shutil.move(os.path.join(os.getcwd, 'pom.xml'), os.path.join(options['target'], '..', 'main', 'pom.xml'))
 
         # If a path to the zip file is not provided, then download it and build it
         if not 'zip' in options:
