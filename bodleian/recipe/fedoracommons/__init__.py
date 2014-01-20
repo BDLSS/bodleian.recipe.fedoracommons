@@ -16,12 +16,12 @@ class Recipe(object):
         self.options = options
         options.setdefault('target', os.path.join(buildout['buildout']['directory'], 'lib', name))
         self.download = downloadRecipe(buildout, name, options)
-        # we get the pom.xml from the buildout conf/ dir
-        pom_path = os.path.join(os.getcwd(), 'conf')
 
     def install(self):
         """Installer"""
         options = self.options
+        # we get the pom.xml from the buildout conf/ dir
+        pom_path = os.path.join(os.getcwd(), 'conf')
 
         # If a path to the zip file is not provided, then download it and build it
         if not 'zip' in options:
