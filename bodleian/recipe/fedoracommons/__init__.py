@@ -37,7 +37,7 @@ class Recipe(object):
             # Call Maven to build couchdb-lucene
             subprocess.call(['mvn', 'install'])
             try:
-                import pdb;pdb.set_trace()
+            #    import pdb;pdb.set_trace()
                 options['zip'] = glob.glob(os.path.join(options['target'], 'target', '*.zip'))[0]
             except IndexError:
                 raise zc.buildout.UserError('Maven failed')
